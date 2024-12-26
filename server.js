@@ -2,13 +2,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const { createClient } = require('@libsql/client');
 const cors = require('cors');
+require('dotenv').config();
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 const client = createClient({
-    url: 'libsql://first-db-lohith114.turso.io',
-    authToken: 'eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJhIjoicnciLCJpYXQiOjE3MzMxNzE2NzMsImlkIjoiMThjZjQ3YjItYmY0My00NmY4LWI0NjItMjRjMzViMjMxNTU1In0.gtrlT1IoprMHxnTs8Ygr8qzWxHjkBPChpMslXhJlGP6jiCLxr7_zJNNED-VjstowzDIvGfZhBhFGa-FB1RXYDg',
+    url: process.env.DATABASE_URL,
+    authToken: process.env.AUTH_TOKEN,
 });
 
 app.use(bodyParser.json());
